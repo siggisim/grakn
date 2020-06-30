@@ -564,7 +564,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
       - test-common:
           filters:
@@ -634,7 +633,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - build
@@ -660,7 +658,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - build
@@ -686,7 +683,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - build
@@ -712,7 +708,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - build
@@ -738,7 +733,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - build
@@ -764,7 +758,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - test-assembly-mac-zip
@@ -776,7 +769,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - test-assembly-mac-zip
@@ -788,7 +780,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - deploy-apt-snapshot
@@ -796,7 +787,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - rewrite
           requires:
             - deploy-rpm-snapshot
@@ -815,6 +805,272 @@ workflows:
                 - master
           requires:
             - sync-dependencies-snapshot
+
+  # grakn-core:
+  #   jobs:
+  #     - build:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - build-checkstyle:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - build-analysis:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #     - test-common:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-server:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-graql:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-connection:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-define:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-delete:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-get:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-insert:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-match:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-undefine:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-behaviour-graql-explanation:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-integration:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-integration-concept:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-integration-keyspace:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-integration-reasoner:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-integration-analytics:
+  #         filters:
+  #           branches:
+  #             ignore: grakn-release-branch
+  #     - test-assembly:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - build
+  #           - build-checkstyle
+  #           - build-analysis
+  #           - test-common
+  #           - test-server
+  #           - test-graql
+  #           - test-behaviour-connection
+  #           - test-behaviour-graql-define
+  #           - test-behaviour-graql-delete
+  #           - test-behaviour-graql-get
+  #           - test-behaviour-graql-insert
+  #           - test-behaviour-graql-match
+  #           - test-behaviour-graql-undefine
+  #           - test-behaviour-graql-explanation
+  #           - test-integration
+  #           - test-integration-reasoner
+  #           - test-integration-analytics
+  #           - test-integration-concept
+  #           - test-integration-keyspace
+  #     - test-assembly-mac-zip:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - build
+  #           - build-checkstyle
+  #           - build-analysis
+  #           - test-common
+  #           - test-server
+  #           - test-graql
+  #           - test-behaviour-connection
+  #           - test-behaviour-graql-define
+  #           - test-behaviour-graql-delete
+  #           - test-behaviour-graql-get
+  #           - test-behaviour-graql-insert
+  #           - test-behaviour-graql-match
+  #           - test-behaviour-graql-undefine
+  #           - test-behaviour-graql-explanation
+  #           - test-integration
+  #           - test-integration-reasoner
+  #           - test-integration-analytics
+  #           - test-integration-concept
+  #           - test-integration-keyspace
+  #     - test-assembly-windows-zip:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - build
+  #           - build-checkstyle
+  #           - build-analysis
+  #           - test-common
+  #           - test-server
+  #           - test-graql
+  #           - test-behaviour-connection
+  #           - test-behaviour-graql-define
+  #           - test-behaviour-graql-delete
+  #           - test-behaviour-graql-get
+  #           - test-behaviour-graql-insert
+  #           - test-behaviour-graql-match
+  #           - test-behaviour-graql-undefine
+  #           - test-behaviour-graql-explanation
+  #           - test-integration
+  #           - test-integration-reasoner
+  #           - test-integration-analytics
+  #           - test-integration-concept
+  #           - test-integration-keyspace
+  #     - test-assembly-linux-targz:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - build
+  #           - build-checkstyle
+  #           - build-analysis
+  #           - test-common
+  #           - test-server
+  #           - test-graql
+  #           - test-behaviour-connection
+  #           - test-behaviour-graql-define
+  #           - test-behaviour-graql-delete
+  #           - test-behaviour-graql-get
+  #           - test-behaviour-graql-insert
+  #           - test-behaviour-graql-match
+  #           - test-behaviour-graql-undefine
+  #           - test-behaviour-graql-explanation
+  #           - test-integration
+  #           - test-integration-reasoner
+  #           - test-integration-analytics
+  #           - test-integration-concept
+  #           - test-integration-keyspace
+  #     - test-assembly-docker:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - build
+  #           - build-checkstyle
+  #           - build-analysis
+  #           - test-common
+  #           - test-server
+  #           - test-graql
+  #           - test-behaviour-connection
+  #           - test-behaviour-graql-define
+  #           - test-behaviour-graql-delete
+  #           - test-behaviour-graql-get
+  #           - test-behaviour-graql-insert
+  #           - test-behaviour-graql-match
+  #           - test-behaviour-graql-undefine
+  #           - test-behaviour-graql-explanation
+  #           - test-integration
+  #           - test-integration-reasoner
+  #           - test-integration-analytics
+  #           - test-integration-concept
+  #           - test-integration-keyspace
+  #     - deploy-apt-snapshot:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - test-assembly-mac-zip
+  #           - test-assembly-windows-zip
+  #           - test-assembly-linux-targz
+  #           - test-assembly-docker
+  #           - test-assembly
+  #     - deploy-rpm-snapshot:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - test-assembly-mac-zip
+  #           - test-assembly-windows-zip
+  #           - test-assembly-linux-targz
+  #           - test-assembly-docker
+  #           - test-assembly
+  #     - test-deployment-linux-apt:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - deploy-apt-snapshot
+  #     - test-deployment-linux-rpm:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - rewrite
+  #         requires:
+  #           - deploy-rpm-snapshot
+  #     - sync-dependencies-snapshot:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #         requires:
+  #           - test-deployment-linux-apt
+  #           - test-deployment-linux-rpm
+  #     - release-approval:
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #         requires:
+  #           - sync-dependencies-snapshot
 
   grakn-core-release:
     jobs:
