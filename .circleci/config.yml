@@ -51,14 +51,14 @@ jobs:
       - checkout
       - run-bazel:
           command: bazel build //...
-      - run:
-          name: Verify dependencies/maven/snapshot.json
-          command: |
-            dependencies/maven/update.sh
-            git diff --exit-code dependencies/maven/artifacts.snapshot
-      - run:
-          command: bazel run @graknlabs_dependencies//tool/unuseddeps:unused-deps -- list
-          no_output_timeout: 30m
+#       - run:
+#           name: Verify dependencies/maven/snapshot.json
+#           command: |
+#             dependencies/maven/update.sh
+#             git diff --exit-code dependencies/maven/artifacts.snapshot
+#       - run:
+#           command: bazel run @graknlabs_dependencies//tool/unuseddeps:unused-deps -- list
+#           no_output_timeout: 30m
 
   build-checkstyle:
     machine:
@@ -69,7 +69,7 @@ jobs:
       - checkout
       - run: bazel run @graknlabs_dependencies//tool/checkstyle:test-coverage
       - run-bazel:
-          command: bazel test $(bazel query 'kind(checkstyle_test, //...)')
+          command: bazel test $(bazel query 'kind(checkstyle_test, //...)') --nocache_test_results
 
   build-analysis:
     machine:
@@ -96,7 +96,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //common/... --test_output=errors
+          command: bazel test //common/... --test_output=errors --nocache_test_results
 
   test-server:
     machine:
@@ -106,7 +106,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //server/... --test_output=errors
+          command: bazel test //server/... --test_output=errors --nocache_test_results
 
   test-graql:
     machine:
@@ -116,7 +116,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //graql/... --test_output=errors
+          command: bazel test //graql/... --test_output=errors --nocache_test_results
 
 
   # behaviour tests
@@ -128,11 +128,11 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/connection/keyspace:test --test_output=errors
+          command: bazel test //test/behaviour/connection/keyspace:test --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/behaviour/connection/session:test --test_output=errors
+          command: bazel test //test/behaviour/connection/session:test --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/behaviour/connection/transaction:test --test_output=errors
+          command: bazel test //test/behaviour/connection/transaction:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-define:
     machine:
@@ -142,7 +142,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/define:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/define:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-delete:
     machine:
@@ -152,7 +152,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-get:
     machine:
@@ -162,7 +162,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-insert:
     machine:
@@ -172,7 +172,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-match:
     machine:
@@ -182,7 +182,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/match:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/match:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-undefine:
     machine:
@@ -192,7 +192,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/undefine:test --test_output=errors
+          command: bazel test //test/behaviour/graql/language/undefine:test --test_output=errors --nocache_test_results
 
   test-behaviour-graql-explanation:
     machine:
@@ -202,9 +202,9 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/explanation/language:test --test_output=errors
+          command: bazel test //test/behaviour/graql/explanation/language:test --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/behaviour/graql/explanation/reasoner:test --test_output=errors
+          command: bazel test //test/behaviour/graql/explanation/reasoner:test --test_output=errors --nocache_test_results
 
   test-behaviour-resolution-reasoner:
     machine:
@@ -214,7 +214,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner:test --test_output=errors
+          command: bazel test //test/behaviour/resolution/reasoner:test --test_output=errors --nocache_test_results
 
   test-behaviour-resolution-attribute-attachment:
     machine:
@@ -224,7 +224,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner/attribute_attachment:test --test_output=errors
+          command: bazel test //test/behaviour/resolution/reasoner/attribute_attachment:test --test_output=errors --nocache_test_results
 
   test-behaviour-resolution-value-predicate:
     machine:
@@ -234,7 +234,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner/value_predicate:test --test_output=errors
+          command: bazel test //test/behaviour/resolution/reasoner/value_predicate:test --test_output=errors --nocache_test_results
 
   test-resolution-framework:
     machine:
@@ -244,7 +244,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/framework/... --test_output=errors
+          command: bazel test //test/behaviour/resolution/framework/... --test_output=errors --nocache_test_results
 
   # integration tests
   test-integration:
@@ -255,13 +255,13 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/server/... --test_output=errors
+          command: bazel test //test/integration/server/... --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/integration/graql/executor/... --test_output=errors
+          command: bazel test //test/integration/graql/executor/... --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/integration/graql/query/... --test_output=errors
+          command: bazel test //test/integration/graql/query/... --test_output=errors --nocache_test_results
       - run-bazel:
-          command: bazel test //test/integration/graql/planning/... --test_output=errors
+          command: bazel test //test/integration/graql/planning/... --test_output=errors --nocache_test_results
 
   test-integration-concept:
     machine:
@@ -271,7 +271,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/concept/... --test_output=errors
+          command: bazel test //test/integration/concept/... --test_output=errors --nocache_test_results
 
   test-integration-keyspace:
     machine:
@@ -281,7 +281,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/keyspace/... --test_output=errors
+          command: bazel test //test/integration/keyspace/... --test_output=errors --nocache_test_results
 
   test-integration-reasoner:
     machine:
@@ -291,7 +291,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/graql/reasoner/... --test_output=errors
+          command: bazel test //test/integration/graql/reasoner/... --test_output=errors --nocache_test_results
 
   test-integration-analytics:
     machine:
@@ -301,7 +301,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/graql/analytics/... --test_output=errors
+          command: bazel test //test/integration/graql/analytics/... --test_output=errors --nocache_test_results
 
   # assembly tests
   test-assembly:
@@ -632,12 +632,12 @@ workflows:
           filters:
             branches:
               ignore: grakn-release-branch
-      - build-analysis:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
+#       - build-analysis:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
       - test-common:
           filters:
             branches:
@@ -718,292 +718,292 @@ workflows:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-assembly:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - build
-            - build-checkstyle
-            - build-analysis
-            - test-common
-            - test-server
-            - test-graql
-            - test-behaviour-connection
-            - test-behaviour-graql-define
-            - test-behaviour-graql-delete
-            - test-behaviour-graql-get
-            - test-behaviour-graql-insert
-            - test-behaviour-graql-match
-            - test-behaviour-graql-undefine
-            - test-behaviour-graql-explanation
-            - test-behaviour-resolution-reasoner
-            - test-behaviour-resolution-attribute-attachment
-            - test-behaviour-resolution-value-predicate
-            - test-resolution-framework
-            - test-integration
-            - test-integration-reasoner
-            - test-integration-analytics
-            - test-integration-concept
-            - test-integration-keyspace
-      - test-assembly-mac-zip:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - build
-            - build-checkstyle
-            - build-analysis
-            - test-common
-            - test-server
-            - test-graql
-            - test-behaviour-connection
-            - test-behaviour-graql-define
-            - test-behaviour-graql-delete
-            - test-behaviour-graql-get
-            - test-behaviour-graql-insert
-            - test-behaviour-graql-match
-            - test-behaviour-graql-undefine
-            - test-behaviour-graql-explanation
-            - test-behaviour-resolution-reasoner
-            - test-behaviour-resolution-attribute-attachment
-            - test-behaviour-resolution-value-predicate
-            - test-resolution-framework
-            - test-integration
-            - test-integration-reasoner
-            - test-integration-analytics
-            - test-integration-concept
-            - test-integration-keyspace
-      - test-assembly-windows-zip:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - build
-            - build-checkstyle
-            - build-analysis
-            - test-common
-            - test-server
-            - test-graql
-            - test-behaviour-connection
-            - test-behaviour-graql-define
-            - test-behaviour-graql-delete
-            - test-behaviour-graql-get
-            - test-behaviour-graql-insert
-            - test-behaviour-graql-match
-            - test-behaviour-graql-undefine
-            - test-behaviour-graql-explanation
-            - test-behaviour-resolution-reasoner
-            - test-behaviour-resolution-attribute-attachment
-            - test-behaviour-resolution-value-predicate
-            - test-resolution-framework
-            - test-integration
-            - test-integration-reasoner
-            - test-integration-analytics
-            - test-integration-concept
-            - test-integration-keyspace
-      - test-assembly-linux-targz:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - build
-            - build-checkstyle
-            - build-analysis
-            - test-common
-            - test-server
-            - test-graql
-            - test-behaviour-connection
-            - test-behaviour-graql-define
-            - test-behaviour-graql-delete
-            - test-behaviour-graql-get
-            - test-behaviour-graql-insert
-            - test-behaviour-graql-match
-            - test-behaviour-graql-undefine
-            - test-behaviour-graql-explanation
-            - test-behaviour-resolution-reasoner
-            - test-behaviour-resolution-attribute-attachment
-            - test-behaviour-resolution-value-predicate
-            - test-resolution-framework
-            - test-integration
-            - test-integration-reasoner
-            - test-integration-analytics
-            - test-integration-concept
-            - test-integration-keyspace
-      - test-assembly-docker:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - build
-            - build-checkstyle
-            - build-analysis
-            - test-common
-            - test-server
-            - test-graql
-            - test-behaviour-connection
-            - test-behaviour-graql-define
-            - test-behaviour-graql-delete
-            - test-behaviour-graql-get
-            - test-behaviour-graql-insert
-            - test-behaviour-graql-match
-            - test-behaviour-graql-undefine
-            - test-behaviour-graql-explanation
-            - test-behaviour-resolution-reasoner
-            - test-behaviour-resolution-attribute-attachment
-            - test-behaviour-resolution-value-predicate
-            - test-resolution-framework
-            - test-integration
-            - test-integration-reasoner
-            - test-integration-analytics
-            - test-integration-concept
-            - test-integration-keyspace
-      - deploy-artifact-snapshot:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - test-assembly-mac-zip
-            - test-assembly-windows-zip
-            - test-assembly-linux-targz
-            - test-assembly-docker
-            - test-assembly
-      - deploy-apt-snapshot:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - test-assembly-mac-zip
-            - test-assembly-windows-zip
-            - test-assembly-linux-targz
-            - test-assembly-docker
-            - test-assembly
-      - deploy-rpm-snapshot:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - test-assembly-mac-zip
-            - test-assembly-windows-zip
-            - test-assembly-linux-targz
-            - test-assembly-docker
-            - test-assembly
-      - test-deployment-linux-apt:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - deploy-apt-snapshot
-      - test-deployment-linux-rpm:
-          filters:
-            branches:
-              only:
-                - master
-                - rewrite
-          requires:
-            - deploy-rpm-snapshot
-      - sync-dependencies-snapshot:
-          filters:
-            branches:
-              only:
-                - master
-          requires:
-            - deploy-artifact-snapshot
-            - test-deployment-linux-apt
-            - test-deployment-linux-rpm
-      - release-approval:
-          filters:
-            branches:
-              only:
-                - master
-          requires:
-            - sync-dependencies-snapshot
+#       - test-assembly:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - build
+#             - build-checkstyle
+#             - build-analysis
+#             - test-common
+#             - test-server
+#             - test-graql
+#             - test-behaviour-connection
+#             - test-behaviour-graql-define
+#             - test-behaviour-graql-delete
+#             - test-behaviour-graql-get
+#             - test-behaviour-graql-insert
+#             - test-behaviour-graql-match
+#             - test-behaviour-graql-undefine
+#             - test-behaviour-graql-explanation
+#             - test-behaviour-resolution-reasoner
+#             - test-behaviour-resolution-attribute-attachment
+#             - test-behaviour-resolution-value-predicate
+#             - test-resolution-framework
+#             - test-integration
+#             - test-integration-reasoner
+#             - test-integration-analytics
+#             - test-integration-concept
+#             - test-integration-keyspace
+#       - test-assembly-mac-zip:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - build
+#             - build-checkstyle
+#             - build-analysis
+#             - test-common
+#             - test-server
+#             - test-graql
+#             - test-behaviour-connection
+#             - test-behaviour-graql-define
+#             - test-behaviour-graql-delete
+#             - test-behaviour-graql-get
+#             - test-behaviour-graql-insert
+#             - test-behaviour-graql-match
+#             - test-behaviour-graql-undefine
+#             - test-behaviour-graql-explanation
+#             - test-behaviour-resolution-reasoner
+#             - test-behaviour-resolution-attribute-attachment
+#             - test-behaviour-resolution-value-predicate
+#             - test-resolution-framework
+#             - test-integration
+#             - test-integration-reasoner
+#             - test-integration-analytics
+#             - test-integration-concept
+#             - test-integration-keyspace
+#       - test-assembly-windows-zip:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - build
+#             - build-checkstyle
+#             - build-analysis
+#             - test-common
+#             - test-server
+#             - test-graql
+#             - test-behaviour-connection
+#             - test-behaviour-graql-define
+#             - test-behaviour-graql-delete
+#             - test-behaviour-graql-get
+#             - test-behaviour-graql-insert
+#             - test-behaviour-graql-match
+#             - test-behaviour-graql-undefine
+#             - test-behaviour-graql-explanation
+#             - test-behaviour-resolution-reasoner
+#             - test-behaviour-resolution-attribute-attachment
+#             - test-behaviour-resolution-value-predicate
+#             - test-resolution-framework
+#             - test-integration
+#             - test-integration-reasoner
+#             - test-integration-analytics
+#             - test-integration-concept
+#             - test-integration-keyspace
+#       - test-assembly-linux-targz:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - build
+#             - build-checkstyle
+#             - build-analysis
+#             - test-common
+#             - test-server
+#             - test-graql
+#             - test-behaviour-connection
+#             - test-behaviour-graql-define
+#             - test-behaviour-graql-delete
+#             - test-behaviour-graql-get
+#             - test-behaviour-graql-insert
+#             - test-behaviour-graql-match
+#             - test-behaviour-graql-undefine
+#             - test-behaviour-graql-explanation
+#             - test-behaviour-resolution-reasoner
+#             - test-behaviour-resolution-attribute-attachment
+#             - test-behaviour-resolution-value-predicate
+#             - test-resolution-framework
+#             - test-integration
+#             - test-integration-reasoner
+#             - test-integration-analytics
+#             - test-integration-concept
+#             - test-integration-keyspace
+#       - test-assembly-docker:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - build
+#             - build-checkstyle
+#             - build-analysis
+#             - test-common
+#             - test-server
+#             - test-graql
+#             - test-behaviour-connection
+#             - test-behaviour-graql-define
+#             - test-behaviour-graql-delete
+#             - test-behaviour-graql-get
+#             - test-behaviour-graql-insert
+#             - test-behaviour-graql-match
+#             - test-behaviour-graql-undefine
+#             - test-behaviour-graql-explanation
+#             - test-behaviour-resolution-reasoner
+#             - test-behaviour-resolution-attribute-attachment
+#             - test-behaviour-resolution-value-predicate
+#             - test-resolution-framework
+#             - test-integration
+#             - test-integration-reasoner
+#             - test-integration-analytics
+#             - test-integration-concept
+#             - test-integration-keyspace
+#       - deploy-artifact-snapshot:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - test-assembly-mac-zip
+#             - test-assembly-windows-zip
+#             - test-assembly-linux-targz
+#             - test-assembly-docker
+#             - test-assembly
+#       - deploy-apt-snapshot:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - test-assembly-mac-zip
+#             - test-assembly-windows-zip
+#             - test-assembly-linux-targz
+#             - test-assembly-docker
+#             - test-assembly
+#       - deploy-rpm-snapshot:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - test-assembly-mac-zip
+#             - test-assembly-windows-zip
+#             - test-assembly-linux-targz
+#             - test-assembly-docker
+#             - test-assembly
+#       - test-deployment-linux-apt:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - deploy-apt-snapshot
+#       - test-deployment-linux-rpm:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#                 - rewrite
+#           requires:
+#             - deploy-rpm-snapshot
+#       - sync-dependencies-snapshot:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#           requires:
+#             - deploy-artifact-snapshot
+#             - test-deployment-linux-apt
+#             - test-deployment-linux-rpm
+#       - release-approval:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#           requires:
+#             - sync-dependencies-snapshot
 
-  grakn-core-release:
-    jobs:
-      - release-validate:
-          filters:
-            branches:
-              only: grakn-release-branch
-      - deploy-github:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - release-validate
-      - deploy-approval:
-          type: approval
-          requires:
-            - deploy-github
-          filters:
-            branches:
-              only: grakn-release-branch
-      - deploy-artifact:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-approval
-      - deploy-apt:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-approval
-      - deploy-rpm:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-approval
-      - deploy-brew:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-approval
-      - deploy-docker:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-approval
-      - sync-dependencies-release:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - deploy-apt
-            - deploy-rpm
-            - deploy-brew
-            - deploy-docker
-      - release-notification:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - sync-dependencies-release
-      - release-cleanup:
-          filters:
-            branches:
-              only: grakn-release-branch
-          requires:
-            - release-notification
+#   grakn-core-release:
+#     jobs:
+#       - release-validate:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#       - deploy-github:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - release-validate
+#       - deploy-approval:
+#           type: approval
+#           requires:
+#             - deploy-github
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#       - deploy-artifact:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-approval
+#       - deploy-apt:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-approval
+#       - deploy-rpm:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-approval
+#       - deploy-brew:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-approval
+#       - deploy-docker:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-approval
+#       - sync-dependencies-release:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - deploy-apt
+#             - deploy-rpm
+#             - deploy-brew
+#             - deploy-docker
+#       - release-notification:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - sync-dependencies-release
+#       - release-cleanup:
+#           filters:
+#             branches:
+#               only: grakn-release-branch
+#           requires:
+#             - release-notification
