@@ -69,7 +69,7 @@ jobs:
       - checkout
       - run: bazel run @graknlabs_dependencies//tool/checkstyle:test-coverage
       - run-bazel:
-          command: bazel test $(bazel query 'kind(checkstyle_test, //...)') --nocache_test_results
+          command: bazel test $(bazel query 'kind(checkstyle_test, //...)') --nocache_test_results --config=rbe
 
   build-analysis:
     machine:
@@ -96,7 +96,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //common/... --test_output=errors --nocache_test_results
+          command: bazel test //common/... --test_output=errors --nocache_test_results --config=rbe
 
   test-server:
     machine:
@@ -106,7 +106,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //server/... --test_output=errors --nocache_test_results
+          command: bazel test //server/... --test_output=errors --nocache_test_results --config=rbe
 
   test-graql:
     machine:
@@ -116,7 +116,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //graql/... --test_output=errors --nocache_test_results
+          command: bazel test //graql/... --test_output=errors --nocache_test_results --config=rbe
 
 
   # behaviour tests
@@ -128,11 +128,11 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/connection/keyspace:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/connection/keyspace:test --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/behaviour/connection/session:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/connection/session:test --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/behaviour/connection/transaction:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/connection/transaction:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-define:
     machine:
@@ -142,7 +142,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/define:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/define:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-delete:
     machine:
@@ -152,7 +152,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-get:
     machine:
@@ -162,7 +162,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-insert:
     machine:
@@ -172,7 +172,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-match:
     machine:
@@ -182,7 +182,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/match:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/match:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-undefine:
     machine:
@@ -192,7 +192,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/undefine:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/language/undefine:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-explanation:
     machine:
@@ -202,9 +202,9 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/explanation/language:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/explanation/language:test --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/behaviour/graql/explanation/reasoner:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/graql/explanation/reasoner:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-resolution-reasoner:
     machine:
@@ -214,7 +214,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/resolution/reasoner:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-resolution-attribute-attachment:
     machine:
@@ -224,7 +224,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner/attribute_attachment:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/resolution/reasoner/attribute_attachment:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-resolution-value-predicate:
     machine:
@@ -234,7 +234,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/reasoner/value_predicate:test --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/resolution/reasoner/value_predicate:test --test_output=errors --nocache_test_results --config=rbe
 
   test-resolution-framework:
     machine:
@@ -244,7 +244,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/resolution/framework/... --test_output=errors --nocache_test_results
+          command: bazel test //test/behaviour/resolution/framework/... --test_output=errors --nocache_test_results --config=rbe
 
   # integration tests
   test-integration:
@@ -255,13 +255,13 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/server/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/server/... --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/integration/graql/executor/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/graql/executor/... --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/integration/graql/query/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/graql/query/... --test_output=errors --nocache_test_results --config=rbe
       - run-bazel:
-          command: bazel test //test/integration/graql/planning/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/graql/planning/... --test_output=errors --nocache_test_results --config=rbe
 
   test-integration-concept:
     machine:
@@ -271,7 +271,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/concept/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/concept/... --test_output=errors --nocache_test_results --config=rbe
 
   test-integration-keyspace:
     machine:
@@ -281,7 +281,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/keyspace/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/keyspace/... --test_output=errors --nocache_test_results --config=rbe
 
   test-integration-reasoner:
     machine:
@@ -291,7 +291,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/graql/reasoner/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/graql/reasoner/... --test_output=errors --nocache_test_results --config=rbe
 
   test-integration-analytics:
     machine:
@@ -301,7 +301,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/integration/graql/analytics/... --test_output=errors --nocache_test_results
+          command: bazel test //test/integration/graql/analytics/... --test_output=errors --nocache_test_results --config=rbe
 
   # assembly tests
   test-assembly:
