@@ -50,7 +50,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel build //...
+          command: bazel build //... --config=rbe
 #       - run:
 #           name: Verify dependencies/maven/snapshot.json
 #           command: |
