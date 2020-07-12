@@ -186,6 +186,9 @@ public class GraknTestServer extends ExternalResource {
         String storageHostname = serverConfig.getProperty(ConfigKey.STORAGE_HOSTNAME);
         // CQL cluster used by KeyspaceManager to fetch all existing keyspaces
         CqlSession cqlSession = CqlSession.builder()
+				.withConfigLoader(DriverConfigLoader.programmaticBuilder()
+						.withDuration(DefaultDriverOption.CONNECTION_INIT_QUERY_TIMEOUT, Duration.ofSeconds(10))
+						.withDuration(DefaultDriverOption.REQUEST_TIMEOUT, Duration.ofSeconds(20)).build())
                 .addContactPoint(new InetSocketAddress(storageHostname, storagePort))
                 .withLocalDatacenter("datacenter1")
                 .build();
