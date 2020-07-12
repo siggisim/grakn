@@ -17,6 +17,10 @@
 
 package grakn.core.test.rule;
 
+import java.time.Duration;
+import com.datastax.oss.driver.api.core.config.DefaultDriverOption;
+import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
+
 import com.datastax.oss.driver.api.core.CqlSession;
 import grakn.core.common.config.Config;
 import grakn.core.common.config.ConfigKey;
