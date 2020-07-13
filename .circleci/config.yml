@@ -97,33 +97,33 @@ jobs:
       - checkout
       - run-bazel:
           command: |
-            bazel test \
-                //common/... \
-                //server/... \
-                //graql/... \
-                //test/behaviour/connection/keyspace:test \
-                //test/behaviour/connection/session:test \
-                //test/behaviour/connection/transaction:test \
-                //test/behaviour/graql/language/define:test \
-                //test/behaviour/graql/language/delete:test \
-                //test/behaviour/graql/language/get:test \
-                //test/behaviour/graql/language/insert:test \
-                //test/behaviour/graql/language/match:test \
-                //test/behaviour/graql/language/undefine:test \
-                //test/behaviour/graql/explanation/language:test \
-                //test/behaviour/graql/explanation/reasoner:test \
-                //test/behaviour/resolution/reasoner:test \
-                //test/behaviour/resolution/reasoner/attribute_attachment:test \
-                //test/behaviour/resolution/reasoner/value_predicate:test \
-                //test/behaviour/resolution/framework/... \
-                //test/integration/server/... \
-                //test/integration/graql/executor/... \
-                //test/integration/graql/query/... \
-                //test/integration/graql/planning/... \
-                //test/integration/concept/... \
-                //test/integration/keyspace/... \
-                //test/integration/graql/reasoner/... \
-                //test/integration/graql/analytics/... \
+            bazel test 
+                //common/... 
+                //server/... 
+                //graql/...
+                //test/behaviour/connection/keyspace:test
+                //test/behaviour/connection/session:test
+                //test/behaviour/connection/transaction:test
+                //test/behaviour/graql/language/define:test
+                //test/behaviour/graql/language/delete:test
+                //test/behaviour/graql/language/get:test
+                //test/behaviour/graql/language/insert:test
+                //test/behaviour/graql/language/match:test
+                //test/behaviour/graql/language/undefine:test
+                //test/behaviour/graql/explanation/language:test
+                //test/behaviour/graql/explanation/reasoner:test
+                //test/behaviour/resolution/reasoner:test
+                //test/behaviour/resolution/reasoner/attribute_attachment:test
+                //test/behaviour/resolution/reasoner/value_predicate:test
+                //test/behaviour/resolution/framework/...
+                //test/integration/server/...
+                //test/integration/graql/executor/...
+                //test/integration/graql/query/...
+                //test/integration/graql/planning/...
+                //test/integration/concept/...
+                //test/integration/keyspace/...
+                //test/integration/graql/reasoner/...
+                //test/integration/graql/analytics/...
                 --test_output=errors --nocache_test_results --config=rbe
 
   # assembly tests
