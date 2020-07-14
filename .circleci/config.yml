@@ -624,10 +624,10 @@ jobs:
 workflows:
   grakn-core:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - build:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       - build-checkstyle:
           filters:
             branches:
