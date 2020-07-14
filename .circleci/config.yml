@@ -155,8 +155,8 @@ jobs:
           command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-get:
-    machine:
-      image: openjdk:8u252-jdk
+    docker:
+      image: circleci/openjdk:8u252-jdk
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
