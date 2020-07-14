@@ -666,14 +666,14 @@ workflows:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-behaviour-graql-insert:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-behaviour-graql-match:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-graql-insert:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-behaviour-graql-match:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       # - test-behaviour-graql-undefine:
       #     filters:
       #       branches:
@@ -978,7 +978,7 @@ workflows:
 #           filters:
 #             branches:
 #               only: grakn-release-branch
-#           requires:
+#           requires:`
 #             - deploy-approval
 #       - deploy-docker:
 #           filters:
