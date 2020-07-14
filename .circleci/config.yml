@@ -654,10 +654,10 @@ workflows:
       #     filters:
       #       branches:
       #         ignore: grakn-release-branch
-      - test-behaviour-graql-define:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-graql-define:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       # - test-behaviour-graql-delete:
       #     filters:
       #       branches:
@@ -674,10 +674,10 @@ workflows:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-behaviour-graql-undefine:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-graql-undefine:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       # - test-behaviour-graql-explanation:
       #     filters:
       #       branches:
@@ -690,10 +690,10 @@ workflows:
       #     filters:
       #       branches:
       #         ignore: grakn-release-branch
-      - test-behaviour-resolution-value-predicate:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-resolution-value-predicate:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       # - test-resolution-framework:
       #     filters:
       #       branches:
@@ -710,10 +710,10 @@ workflows:
       #     filters:
       #       branches:
       #         ignore: grakn-release-branch
-      - test-integration-reasoner:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-integration-reasoner:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       # - test-integration-analytics:
       #     filters:
       #       branches:
