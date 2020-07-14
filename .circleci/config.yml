@@ -167,6 +167,7 @@ jobs:
           path: /tmp/bazel.log
           destination: bazel-log
                 
+          
   test-behaviour-graql-insert:
     machine:
       image: ubuntu-1604:201903-01
