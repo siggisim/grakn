@@ -638,30 +638,30 @@ workflows:
 #               only:
 #                 - master
 #                 - rewrite
-      - test-common:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-server:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-graql:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-behaviour-connection:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-common:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-server:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-graql:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-behaviour-connection:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       - test-behaviour-graql-define:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-behaviour-graql-delete:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-graql-delete:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       - test-behaviour-graql-get:
           filters:
             branches:
@@ -678,46 +678,46 @@ workflows:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-behaviour-graql-explanation:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-behaviour-resolution-reasoner:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-behaviour-resolution-attribute-attachment:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-behaviour-graql-explanation:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-behaviour-resolution-reasoner:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-behaviour-resolution-attribute-attachment:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       - test-behaviour-resolution-value-predicate:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-resolution-framework:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-integration:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-integration-concept:
-          filters:
-            branches:
-              ignore: grakn-release-branch
-      - test-integration-keyspace:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-resolution-framework:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-integration:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-integration-concept:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
+      # - test-integration-keyspace:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
       - test-integration-reasoner:
           filters:
             branches:
               ignore: grakn-release-branch
-      - test-integration-analytics:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - test-integration-analytics:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
 #       - test-assembly:
 #           filters:
 #             branches:
