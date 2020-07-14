@@ -154,15 +154,14 @@ jobs:
       - run-bazel:
           command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results --config=rbe
 
-  test-behaviour-graql-get:
+      image: ubuntu-1604:201903-01
     machine:
       image: ubuntu-1604:202007-01
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
       - checkout
-      - run-bazel:
-          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
+      - run: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-insert:
     machine:
