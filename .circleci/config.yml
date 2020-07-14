@@ -23,7 +23,7 @@ commands:
   install-bazel-linux:
     steps:
       - run: | 
-          BAZEL_VERSION=3.4.0
+          BAZEL_VERSION=3.4.1
 
           curl -OL https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
           chmod +x bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
@@ -161,7 +161,7 @@ jobs:
 
   test-behaviour-graql-get:
     machine:
-      image: ubuntu-1604:202007-01
+      image: ubuntu-1604:201903-01
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
