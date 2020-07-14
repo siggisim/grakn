@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: << parameters.command >>
+          command: sysctl -a
           no_output_timeout: 20m
 
 jobs:
@@ -167,7 +167,7 @@ jobs:
           path: /tmp/bazel.log
           destination: bazel-log
                 
-          
+
   test-behaviour-graql-insert:
     machine:
       image: ubuntu-1604:201903-01
