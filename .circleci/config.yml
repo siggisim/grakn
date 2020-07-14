@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: << parameters.command >>
+          command: java -version
           no_output_timeout: 20m
 
 jobs:
@@ -155,8 +155,8 @@ jobs:
           command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-get:
-    docker:
-      - image: circleci/openjdk:8u252-jdk
+    machine:
+      image: ubuntu-1604:202007-01
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
