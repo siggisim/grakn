@@ -172,7 +172,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors --nocache_test_results --config=rbe
+          command: bazel test //test/behaviour/graql/language/insert:test --nocache_test_results --config=rbe
 
   test-behaviour-graql-match:
     machine:
