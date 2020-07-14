@@ -22,7 +22,13 @@ orbs:
 commands:
   install-bazel-linux:
     steps:
-      - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/linux.sh
+      - run: | 
+          BAZEL_VERSION=2.1
+
+          curl -OL https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+          chmod +x bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+          sudo ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+          rm ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
       - run: bash ./linux.sh && rm ./linux.sh
       - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/rbe.sh
       - run: bash ./rbe.sh && rm ./rbe.sh
@@ -38,7 +44,7 @@ commands:
           type: string
     steps:
       - run:
-          command: << parameters.command >>J
+          command: << parameters.command >>
           no_output_timeout: 20m
 
 jobs:
