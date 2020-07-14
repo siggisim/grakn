@@ -162,8 +162,11 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
-
+          command: bazel --host_jvm_args="-Djava.util.logging.config.file=logging.properties" test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
+      - store_artifacts:
+          path: /tmp/bazel.log
+          destination: bazel-log
+                
   test-behaviour-graql-insert:
     machine:
       image: ubuntu-1604:201903-01
