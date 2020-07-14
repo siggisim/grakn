@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: sysctl -a
+          command: java -version
           no_output_timeout: 20m
 
 jobs:
