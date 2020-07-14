@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: java -version
+          command: << parameters.command >>J
           no_output_timeout: 20m
 
 jobs:
