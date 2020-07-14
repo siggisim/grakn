@@ -161,8 +161,7 @@ jobs:
     steps:
       - install-bazel-linux
       - checkout
-      - run:
-        command: sysctl -a | grep tcp
+      - run: sysctl -a | grep tcp
       # - run-bazel:
       #     command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
 
