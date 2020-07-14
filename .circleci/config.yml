@@ -628,10 +628,10 @@ workflows:
       #     filters:
       #       branches:
       #         ignore: grakn-release-branch
-      - build-checkstyle:
-          filters:
-            branches:
-              ignore: grakn-release-branch
+      # - build-checkstyle:
+      #     filters:
+      #       branches:
+      #         ignore: grakn-release-branch
 #       - build-analysis:
 #           filters:
 #             branches:
