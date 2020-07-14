@@ -29,7 +29,6 @@ commands:
           chmod +x bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
           sudo ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
           rm ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
-      - run: bash ./linux.sh && rm ./linux.sh
       - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/rbe.sh
       - run: bash ./rbe.sh && rm ./rbe.sh
 
