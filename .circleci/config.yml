@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: java -version
+          command: << parameters.command >>
           no_output_timeout: 20m
 
 jobs:
@@ -156,7 +156,7 @@ jobs:
 
   test-behaviour-graql-get:
     machine:
-      image: ubuntu-1604:201903-01
+      image: circleci/openjdk:8u252
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
@@ -167,7 +167,7 @@ jobs:
           path: /tmp/bazel.log
           destination: bazel-log
                 
-
+          
   test-behaviour-graql-insert:
     machine:
       image: ubuntu-1604:201903-01
