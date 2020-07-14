@@ -38,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: bazel run @graknlabs_dependencies//tool/bazelrun:rbe -- << parameters.command >>
+          command: << parameters.command >>
           no_output_timeout: 20m
 
 jobs:
@@ -161,7 +161,8 @@ jobs:
     steps:
       - install-bazel-linux
       - checkout
-      - run: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
+      - run-bazel:
+          command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-insert:
     machine:
