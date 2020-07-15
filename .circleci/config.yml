@@ -156,7 +156,7 @@ jobs:
 
   test-behaviour-graql-get:
     machine:
-      image: ubuntu-1804:202007-01
+      image: cimg/openjdk:8.0.252
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
