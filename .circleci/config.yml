@@ -22,13 +22,8 @@ orbs:
 commands:
   install-bazel-linux:
     steps:
-      - run: | 
-          BAZEL_VERSION=3.3.1
-
-          curl -OL https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
-          chmod +x bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
-          sudo ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
-          rm ./bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh
+      - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/linux.sh
+      - run: bash ./linux.sh && rm ./linux.sh
       - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/rbe.sh
       - run: bash ./rbe.sh && rm ./rbe.sh
 
@@ -43,7 +38,7 @@ commands:
           type: string
     steps:
       - run:
-          command: << parameters.command >>
+          command: bazel run @graknlabs_dependencies//tool/bazelrun:rbe -- << parameters.command >>
           no_output_timeout: 20m
 
 jobs:
@@ -160,17 +155,15 @@ jobs:
           command: bazel test //test/behaviour/graql/language/delete:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-get:
-    docker:
-      - image: cimg/python:3.6.10
+    machine:
+      image: ubuntu-1604:202004-01
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
       - checkout
-      - run: sudo apt update && sudo apt-get install -y openjdk-8-jdk 
       - run-bazel:
           command: bazel test //test/behaviour/graql/language/get:test --test_output=errors --nocache_test_results --config=rbe
-                
-          
+
   test-behaviour-graql-insert:
     machine:
       image: ubuntu-1604:201903-01
@@ -179,7 +172,7 @@ jobs:
       - install-bazel-linux
       - checkout
       - run-bazel:
-          command: bazel test //test/behaviour/graql/language/insert:test --nocache_test_results --config=rbe
+          command: bazel test //test/behaviour/graql/language/insert:test --test_output=errors --nocache_test_results --config=rbe
 
   test-behaviour-graql-match:
     machine:
