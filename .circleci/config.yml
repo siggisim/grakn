@@ -22,6 +22,7 @@ orbs:
 commands:
   install-bazel-linux:
     steps:
+      - run: sudo apt update && sudo apt-get install -y openjdk-8-jdk
       - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/linux.sh
       - run: bash ./linux.sh && rm ./linux.sh
       - run: curl -OL https://raw.githubusercontent.com/graknlabs/dependencies/master/tool/bazelinstall/rbe.sh
@@ -156,7 +157,7 @@ jobs:
 
   test-behaviour-graql-get:
     docker:
-      - image: cimg/openjdk:8.0.252
+      - image: cimg/python:3.6.10
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
