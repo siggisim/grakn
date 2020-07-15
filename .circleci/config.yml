@@ -156,7 +156,7 @@ jobs:
 
   test-behaviour-graql-get:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-1604:201903-01
     working_directory: ~/grakn
     steps:
       - install-bazel-linux
